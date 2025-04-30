@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Login = () => {
+const Login = ({handleLogin}) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -10,6 +10,7 @@ const submitHandler = (e) => {  // two way binding
   console.log("Email is", email)  //Shows the data in Console.
   console.log("Password is ", password)
 
+  handleLogin(email, password)
   setEmail("") //This empties the form after submission.
   setPassword("")
 }  
@@ -31,7 +32,8 @@ const submitHandler = (e) => {  // two way binding
             console.log("Changing")
             setEmail(e.target.value)
           }}
-          className='border-2 border-emerald-600 px-3 py-3 text-xl  text-black outline-none rounded-full  placeholder:text-white' type="email" placeholder='Enter your email'/>
+          
+          className='border-2 border-emerald-600 px-3 py-3 text-xl  text-black outline-none rounded-full  placeholder:text-white mb-4' type="email" placeholder='Enter your email'/>
           <input 
           value={password}
           onChange={(e)=>{

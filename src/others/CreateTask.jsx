@@ -4,7 +4,7 @@ const CreateTask = () => {
   return (
     <div>
         {/* h-screen */}
-         <div className='h-90 overflow-auto w-full bg-gray-800 rounded-xl p-10 px-4 py-4'>
+         <div className='h-85 overflow-auto w-full bg-gray-800 rounded-xl p-10 px-4 py-4'>
               
                 <div>
                     <form action="" className='flex flex-wrap  w-full items-start justify-between'>
