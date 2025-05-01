@@ -3,8 +3,8 @@ import React from 'react'
 const CreateTask = () => {
   return (
     <div>
-        {/* h-screen */}
-         <div className='h-85 overflow-auto w-full bg-gray-800 rounded-xl p-10 px-4 py-4'>
+        {/* h-screen ,  bg-gray-800 */}
+         <div className=' overflow-auto w-full rounded-xl p-10 px-4 py-4'>
               
                 <div>
                     <form action="" className='flex flex-wrap  w-full items-start justify-between'>
