@@ -11,19 +11,18 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [loggedInUserData, setloggedInUserData] = useState(null)
   const authData = useContext(AuthContext)
-  // console.log(authData.employees.find((e) => {
-  //   email == e.email && e.password == password
-  // } ))
 
-  useEffect(()=> {
+//   useEffect(()=> {
+    
+//     const loggedInUser = localStorage.getItem("loggedInUser")
 
-    if(authData){
-      const loggedInUser = localStorage.getItem("loggedInUser")
-      if(loggedInUser){
-        setUser(loggedInUser.role)
-      }
-    }
-  }, [authData]);
+//     if(loggedInUser){
+//      const userData = JSON.parse(loggedInUser);
+//     //  console.log(userData);
+//     setUser(userData.role)
+//     setloggedInUserData(userData.data)
+//   }
+// });
   
     
   const handleLogin = (email, password ) => {
@@ -32,20 +31,21 @@ const App = () => {
       setUser('admin')
       localStorage.setItem('loggedInUser', JSON.stringify({role:'admin'}))
     }
-
     else if(authData)
     {
-      const employee = authData.employees.find((e)=> email == e.email && e.password)
+      const employee = authData.employees.find((e)=> email == e.email && e.password == password)
+
       if(employee){
-    
         setUser('employee')
-        localStorage.setItem('loggedInUser', JSON.stringify({role:'employee'}))
-      
+        setloggedInUserData(employee)
+        localStorage.setItem('loggedInUser', JSON.stringify({role:'employee', data:employee}))
       }   
     }
 
     else
-    alert("Invalid Credentials")
+  {
+  alert("Invalid Credentials")
+}
   }
 
 
@@ -53,16 +53,8 @@ const App = () => {
   return (
     <>
    { !user ? < Login  handleLogin = {handleLogin}  /> : '' }
-   {user == 'admin' ? <AdminDashboard /> :  <EmployeeDashboard />}
+   {user == 'admin' ? <AdminDashboard /> :  ( user == 'employee' ? <EmployeeDashboard data = {loggedInUserData} /> : null )}
 
-    {/* {!user ? <Login /> : '' } */}
-{/* 
-   {user == 'admin' ? <AdminDashboard /> : <AdminDashboard data = {loggedInUserData} /> }
-   {user == 'employee' && <EmployeeDashboard data = {loggedInUserData}/>  }
- */}
-
-   {/* <EmployeeDashboard />    */}
-   {/* <AdminDashboard/> */}
     </>
   )
 }
